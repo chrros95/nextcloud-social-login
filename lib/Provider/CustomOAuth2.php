@@ -38,6 +38,15 @@ class CustomOAuth2 extends OAuth2
 
         $data = new Data\Collection($response);
 
+        if($this->config->get("attribute_path") && !empty(trim($this->config->get("attribute_path")))){
+          $path = explode(",", $this->config->get("attribute_path"));
+          foreach($path as $node){
+            if($data->exists($node)){
+              $data = new Data\Collection($data->get($node));
+            }
+          }
+        }
+
         if($this->config->get('attribute_mapping') && is_array($this->config->get('attribute_mapping'))){
           $attributeMapping = $this->config->get('attribute_mapping');
           foreach ($attributeMapping["original_attribute"] as $key => $origAttr){
@@ -48,7 +57,6 @@ class CustomOAuth2 extends OAuth2
         }
 
         if (!$data->exists('identifier')) {
-            $this->logger->error('Provider API returned an unexpected response (identifier not found). Response is '.json_encode($response));
             throw new UnexpectedApiResponseException('Provider API returned an unexpected response.');
         }
 
