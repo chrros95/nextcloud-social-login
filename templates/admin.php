@@ -2,6 +2,8 @@
 /** @var array $_ */
 /** @var \OCP\IL10N $l */
 
+use Hybridauth\User;
+
 $providersData = [
     'openid' => [
         'title' => 'OpenID',
@@ -288,4 +290,9 @@ $styleClass = [
           <?php print_unescaped($this->inc('sub.provider-settings', array('styleClass' => $styleClass, 'provType' => $provType,'provData' => $provData, 'action' => "create"))); ?>
         </div>
     <?php endforeach ?>
+    <datalist id="sociallogin-profile-attributes">
+      <?php foreach(get_class_vars(get_class(new User\Profile())) as $name => $value ): ?>
+        <option value="<?php p($name) ?>" />
+      <?php endforeach ?>
+    </datalist>
 </div>

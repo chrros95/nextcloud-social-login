@@ -59,14 +59,14 @@ if($isCreationMode){
             <?php foreach ($provider[$fieldName]["original_attribute"] as $key => $origAttr):?>
               <tr>
                 <td><input type="text" name="<?php p($provType)?>_providers[<?php p($k) ?>][<?php p($fieldName)?>][original_attribute][]" placeholder="<?php p($l->t("old name"))?>" data-provider="<?php p($k) ?>" value="<?php p($origAttr) ?>"></td>
-                <td><input type="text" name="<?php p($provType)?>_providers[<?php p($k) ?>][<?php p($fieldName)?>][new_attribute][]" placeholder="<?php p($l->t("new name"))?>" data-provider="<?php p($k) ?>"  value="<?php p($provider[$fieldName]["new_attribute"][$key]) ?>"></td>
+                <td><input type="text" name="<?php p($provType)?>_providers[<?php p($k) ?>][<?php p($fieldName)?>][new_attribute][]" placeholder="<?php p($l->t("new name"))?>" data-provider="<?php p($k) ?>"  value="<?php p($provider[$fieldName]["new_attribute"][$key]) ?>" list="sociallogin-profile-attributes" ></td>
                 <td><div class="icon-delete" data-field="<?php p($fieldName) ?>"  data-action="delete" data-provider="<?php p($k) ?>"></div></td>
               </tr>
             <?php endforeach ?>
           <?php endif ?>
           <tr data-action="new">
             <td><input type="text" name="original_attribute" placeholder="<?php p($l->t("old name"))?>" data-provider="<?php p($k) ?>"></td>
-            <td><input type="text" name="new_attribute" placeholder="<?php p($l->t("new name"))?>" data-provider="<?php p($k) ?>"></td>
+            <td><input type="text" name="new_attribute" placeholder="<?php p($l->t("new name"))?>" data-provider="<?php p($k) ?>" list="sociallogin-profile-attributes" ></td>
             <td><button type="button" data-field="<?php p($fieldName) ?>" data-provider="<?php p($k) ?>" data-provider-type="<?php p($provType)?>">
                 <div class="icon-add"></div>
             </button></td>
@@ -133,7 +133,7 @@ if($isCreationMode){
     <?php if($isCreationMode): ?>
       <div id="sociallogin-<?php p($provType)?>-attributeMapping-tpl" class="sociallogin_tpl">
         <input type="text" name="<?php p($provType)?>_providers[<?php p($k) ?>][attributeMapping][original_attribute][]" placeholder="<?php p($l->t("old name"))?>" value="{{oa_value}}" data-provider="<?php p($k) ?>">
-        <input type="text" name="<?php p($provType)?>_providers[<?php p($k) ?>][attributeMapping][new_attribute][]" placeholder="<?php p($l->t("new name"))?>" value="{{na_value}}" data-provider="<?php p($k) ?>">
+        <input type="text" name="<?php p($provType)?>_providers[<?php p($k) ?>][attributeMapping][new_attribute][]" placeholder="<?php p($l->t("new name"))?>" value="{{na_value}}" data-provider="<?php p($k) ?>" list="sociallogin-profile-attributes" >
         <div class="icon-delete" data-field="attributeMapping" data-action="delete" data-provider="<?php p($k) ?>"></div>
       </div>
     <?php endif ?>
