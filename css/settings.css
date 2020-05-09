@@ -25,7 +25,8 @@
 #sociallogin_settings .group-mapping-tpl,
 #openid_provider_tpl,
 #custom_oidc_provider_tpl,
-#custom_oauth2_provider_tpl {
+#custom_oauth2_provider_tpl,
+.sociallogin_tpl {
   display: none !important;
 }
 input[readonly] {
@@ -46,4 +47,17 @@ input[readonly] {
 #sociallogin_settings .foreign-group,
 #sociallogin_settings .local-group {
   width: 133px;
+}
+
+.sociallogin_fieldset {
+  display: block;
+  width: 100%;
+}
+
+.sociallogin_fieldset input {
+  display: block;
+}
+
+.sociallogin-detail-options tr input {
+    border: none;
 }

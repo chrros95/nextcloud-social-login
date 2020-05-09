@@ -31,6 +31,15 @@ class CustomOpenIDConnect extends CustomOAuth2
         $user = json_decode($userData);
         $data = new Data\Collection($user);
 
+        if($this->config->get('attributeMapping') && is_array($this->config->get('attributeMapping'))){
+          $attributeMapping = $this->config->get('attributeMapping');
+          foreach ($attributeMapping["original_attribute"] as $key => $origAttr){
+            if($data->exists($origAttr)){
+              $data->set($attributeMapping["new_attribute"][$key],$data->get($origAttr));
+            }
+          }
+        }
+
         $userProfile = new User\Profile();
         $userProfile->identifier  = $data->get('sub');
         $userProfile->displayName = $data->get('name') ?: $data->get('preferred_username');
