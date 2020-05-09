@@ -34,7 +34,7 @@ if($isCreationMode){
           value="1"
           data-field="<?php p($fieldName)?>"
           <?php
-            p(!$isCreationMode && $provider[$fieldName] ? 'checked' : '');
+            p(!$isCreationMode && array_key_exists($fieldName, $provider) && $provider[$fieldName] ? 'checked' : '');
             print_unescaped(' data-provider="'.$k.'"');
             p($fieldData['required'] ? ' required' : '');
           ?>
@@ -45,7 +45,7 @@ if($isCreationMode){
     </div>
   <?php endif ?>
   <?php if($fieldName === "attributeMapping"): ?>
-    <div class="sociallogin-detail-options <?php p($isCreationMode || !$provider[$fieldName] ? 'hidden' : '')?>" data-field="<?php p($fieldName) ?>" data-provider="<?php p($k) ?>">
+    <div class="sociallogin-detail-options <?php p($isCreationMode || !array_key_exists($fieldName, $provider) || !$provider[$fieldName] ? 'hidden' : '')?>" data-field="<?php p($fieldName) ?>" data-provider="<?php p($k) ?>">
       <h3><?php p($l->t("Attribute mappings"))?><h3>
       <table class="grid">
         <thead>
@@ -55,7 +55,7 @@ if($isCreationMode){
           </tr>
         <thead>
         <tbody data-field="<?php p($fieldName) ?>" data-provider="<?php p($k) ?>">
-          <?php if(!$isCreationMode && is_array($provider[$fieldName])): ?>
+          <?php if(!$isCreationMode && array_key_exists($fieldName, $provider) && is_array($provider[$fieldName])): ?>
             <?php foreach ($provider[$fieldName]["original_attribute"] as $key => $origAttr):?>
               <tr>
                 <td><input type="text" name="<?php p($provType)?>_providers[<?php p($k) ?>][<?php p($fieldName)?>][original_attribute][]" placeholder="<?php p($l->t("old name"))?>" data-provider="<?php p($k) ?>" value="<?php p($origAttr) ?>"></td>
