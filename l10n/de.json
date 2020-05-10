@@ -28,6 +28,10 @@
   "Default group": "Standard Gruppe für Benutzer",
   "Add group mapping": "Neue Gruppe zuweisen",
   "Custom OAuth2": "Eigener OAuth Server",
-  "Log in with %s": "Anmelden mit %s"
+  "Log in with %s": "Anmelden mit %s",
+  "old name" : "Alter Name",
+  "new name" : "Neuer Name",
+  "Attribute mappings" : "Attribut-Zuordnung",
+  "Rename user attributes (attribute mapping, optional)" : "Umbenennen von Benutzerattributen (Attribut-Zuordnung, optional)"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }

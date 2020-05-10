@@ -38,6 +38,15 @@ class CustomOAuth2 extends OAuth2
 
         $data = new Data\Collection($response);
 
+        if($this->config->get('attribute_mapping') && is_array($this->config->get('attribute_mapping'))){
+          $attributeMapping = $this->config->get('attribute_mapping');
+          foreach ($attributeMapping["original_attribute"] as $key => $origAttr){
+            if($data->exists($origAttr)){
+              $data->set($attributeMapping["new_attribute"][$key],$data->get($origAttr));
+            }
+          }
+        }
+
         if (!$data->exists('identifier')) {
             throw new UnexpectedApiResponseException('Provider API returned an unexpected response.');
         }
