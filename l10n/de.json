@@ -28,6 +28,7 @@
   "Default group": "Standard Gruppe für Benutzer",
   "Add group mapping": "Neue Gruppe zuweisen",
   "Custom OAuth2": "Eigener OAuth Server",
-  "Log in with %s": "Anmelden mit %s"
+  "Log in with %s": "Anmelden mit %s",
+  "Path where the fields can be found in the response of the profile URL (optional, comma-separated)" : "Pfad zu den Profil-Feldern in der Antwort der Profile-URL (optional, kommasepariert)"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }
