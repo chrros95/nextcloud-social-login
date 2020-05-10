@@ -13,12 +13,14 @@ use OCP\IURLGenerator;
 use OCP\IAvatarManager;
 use OCP\IGroupManager;
 use OCP\ISession;
+use OCP\ILogger;
 use OCP\Mail\IMailer;
 use OC\User\LoginException;
 use OCA\SocialLogin\Storage\SessionStorage;
 use OCA\SocialLogin\Provider\CustomOAuth2;
 use OCA\SocialLogin\Provider\CustomOpenIDConnect;
 use OCA\SocialLogin\Db\SocialConnectDAO;
+use OCA\SocialLogin\Logger\HybridauthLoggerAdapter;
 use Hybridauth\Provider;
 use Hybridauth\User\Profile;
 use Hybridauth\HttpClient\Curl;
@@ -41,6 +43,8 @@ class LoginController extends Controller
     private $groupManager;
     /** @var ISession */
     private $session;
+    /** @var ILogger */
+    private $logger;
     /** @var IL10N */
     private $l;
     /** @var IMailer */
@@ -60,6 +64,7 @@ class LoginController extends Controller
         IAvatarManager $avatarManager,
         IGroupManager $groupManager,
         ISession $session,
+        ILogger $logger,
         IL10N $l,
         IMailer $mailer,
         SocialConnectDAO $socialConnect
@@ -73,6 +78,7 @@ class LoginController extends Controller
         $this->avatarManager = $avatarManager;
         $this->groupManager = $groupManager;
         $this->session = $session;
+        $this->logger = $logger;
         $this->l = $l;
         $this->mailer = $mailer;
         $this->socialConnect = $socialConnect;
@@ -273,7 +279,7 @@ class LoginController extends Controller
         }
 
         try {
-            $adapter = new $class($config, null, $this->storage);
+            $adapter = new $class($config, null, $this->storage, new HybridauthLoggerAdapter($this->logger));
             $adapter->authenticate();
             $profile = $adapter->getUserProfile();
         }  catch (\Exception $e) {
