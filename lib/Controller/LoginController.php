@@ -20,6 +20,7 @@ use OCA\SocialLogin\Storage\SessionStorage;
 use OCA\SocialLogin\Provider\CustomOAuth2;
 use OCA\SocialLogin\Provider\CustomOpenIDConnect;
 use OCA\SocialLogin\Db\SocialConnectDAO;
+use OCA\SocialLogin\Logger\HybridauthLoggerAdapter;
 use Hybridauth\Provider;
 use Hybridauth\User\Profile;
 use Hybridauth\HttpClient\Curl;
