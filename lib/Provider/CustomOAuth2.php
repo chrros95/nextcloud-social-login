@@ -52,6 +52,7 @@ class CustomOAuth2 extends OAuth2
         }
 
         if (!$data->exists('identifier')) {
+            $this->logger->error('Provider API returned an unexpected response (identifier not found). Response data is '.json_encode($data->toArray()));
             throw new UnexpectedApiResponseException('Provider API returned an unexpected response.');
         }
 
