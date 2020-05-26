@@ -217,6 +217,7 @@ class LoginController extends Controller
                         'groups_claim'  => isset($prov['groupsClaim']) ? $prov['groupsClaim'] : null,
                         'group_mapping' => isset($prov['groupMapping']) ? $prov['groupMapping'] : null,
                         'attribute_mapping' => isset($prov['attributeMapping']) ? $prov['attributeMapping'] : null,
+                        'attribute_path' => isset($prov['attributePath']) ? $prov['attributePath'] : null,
                         'logout_url'    => isset($prov['logoutUrl']) ? $prov['logoutUrl'] : null,
                     ];
                     break;

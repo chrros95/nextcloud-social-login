@@ -26,17 +26,21 @@ class CustomOAuth2 extends OAuth2
         }
 
         $response = $this->apiRequest($profileUrl);
-        if (!isset($response->identifier) && isset($response->id)) {
-            $response->identifier = $response->id;
-        }
-        if (!isset($response->identifier) && isset($response->data->id)) {
-            $response->identifier = $response->data->id;
-        }
-        if (!isset($response->identifier) && isset($response->user_id)) {
-            $response->identifier = $response->user_id;
+        $data = new Data\Collection($response);
+
+        if($this->config->get("attribute_path") && !empty(trim($this->config->get("attribute_path")))){
+          $data = $this->stripPath($data);
         }
 
-        $data = new Data\Collection($response);
+        if (!$data->exists("identifier") && $data->exists("id")) {
+            $data->set("identifier", $data->get("id"));
+        }
+        if (!$data->exists("identifier") && $data->exists("data") && isset($data->get("data")->id)) {
+            $data->set("identifier", $data->get("data")->id);
+        }
+        if (!$data->exists("identifier") && $data->exists("user_id")) {
+            $data->set("identifier", $data->get("user_id"));
+        }
 
         if($this->config->get('attribute_mapping') && is_array($this->config->get('attribute_mapping'))){
           $attributeMapping = $this->config->get('attribute_mapping');
@@ -98,5 +102,15 @@ class CustomOAuth2 extends OAuth2
             array_map('trim', explode(',', $str)),
             function ($val) { return $val !== ''; }
         );
+    }
+
+    private function stripPath(Data\Collection $data){
+      $path = explode(",", $this->config->get("attribute_path"));
+      foreach($path as $node){
+        if($data->exists($node)){
+          $data = new Data\Collection($data->get($node));
+        }
+      }
+      return $data;
     }
 }

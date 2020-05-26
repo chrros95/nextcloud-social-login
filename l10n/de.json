@@ -32,6 +32,7 @@
   "old name" : "Alter Name",
   "new name" : "Neuer Name",
   "Attribute mappings" : "Attribut-Zuordnung",
-  "Rename user attributes (attribute mapping, optional)" : "Umbenennen von Benutzerattributen (Attribut-Zuordnung, optional)"
+  "Rename user attributes (attribute mapping, optional)" : "Umbenennen von Benutzerattributen (Attribut-Zuordnung, optional)",
+  "Path where the fields can be found in the response of the profile URL (optional, comma-separated)" : "Pfad zu den Profil-Feldern in der Antwort der Profile-URL (optional, kommasepariert)"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }

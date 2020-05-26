@@ -138,6 +138,11 @@ $providersData = [
                 'type' => 'text',
                 'required' => false,
             ],
+            'attributePath' => [
+                'title' => 'Path where the fields can be found in the response of the profile URL (optional, comma-separated)',
+                'type' => 'text',
+                'required' => false,
+            ],
             'groupsClaim' => [
                 'title' => 'Groups claim (optional)',
                 'type' => 'text',
